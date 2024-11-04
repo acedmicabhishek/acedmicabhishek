@@ -43,6 +43,7 @@ I'm Abhishek Anand, also known as Abhis, a passionate **Computer Science Student
 ![Vulkan](https://img.shields.io/badge/Vulkan-C0402C?style=for-the-badge&logo=vulkan&logoColor=white)
 ![Unreal Engine](https://img.shields.io/badge/Unreal-313131?style=for-the-badge&logo=unreal-engine&logoColor=white)
 ![Unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white)
+![Android Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white)
 
 ### 📂 Notable Projects
 
