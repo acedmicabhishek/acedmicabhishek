@@ -1,5 +1,3 @@
-<h1 align="center">Hi there, I'm Abhishek Anand </h1>
-
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=acedmicabhishek&label=Profile%20views&color=0e75b6&style=flat" alt="acedmicabhishek" />
 </p>
@@ -8,25 +6,8 @@
   <img src="https://img.shields.io/github/followers/acedmicabhishek?label=Follow&style=social" />
 </p>
 
----
-
-### 🌟 About Me
-I like computers and C 
-
--  **Location:** India
--  **Specializing in:** C, C++, Assembly (x86, ARM)
-
-###  Skills and Interests
-
-- **Programming Languages**: 
-  - C, C++, x86/ARM Assembly, Python, JavaScript, Kotlin, Rust, C#, PowerShell
-- **Technologies & Frameworks**:
-  - SDL2, OpenGL, Vulkan, WebGL, Node.js, .NET, React Native, Unreal Engine, Unity
-- **Hobbies**:
-  - Gaming (Apex Legends, PUBG), Exploring hardware programming with CUDA and custom kernel development
 
 ### Technologies & Tools
-
 ![C](https://img.shields.io/badge/C-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
 ![Assembly](https://img.shields.io/badge/Assembly-8B0000?style=for-the-badge)
