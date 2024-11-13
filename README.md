@@ -11,24 +11,21 @@
 ---
 
 ### 🌟 About Me
-I'm Abhishek Anand, also known as Abhis, a passionate **Computer Science Student** from India, with a sharp interest in **low-level programming, compiler design, system development, and game engine development**.
+I like computers and C 
 
-- 📍 **Location:** India
-- 📚 **Currently in Semester:** 5
-- 🖥️ **Specializing in:** C, C++, Assembly (x86, ARM)
+-  **Location:** India
+-  **Specializing in:** C, C++, Assembly (x86, ARM)
 
-### 🚀 Skills and Interests
+###  Skills and Interests
 
 - **Programming Languages**: 
   - C, C++, x86/ARM Assembly, Python, JavaScript, Kotlin, Rust, C#, PowerShell
 - **Technologies & Frameworks**:
   - SDL2, OpenGL, Vulkan, WebGL, Node.js, .NET, React Native, Unreal Engine, Unity
-- **Current Projects**: 
-  - [Kernel Drive](https://github.com/acedmicabhishek/KernelDrive) – A Linux CPU/GPU performance management tool
 - **Hobbies**:
   - Gaming (Apex Legends, PUBG), Exploring hardware programming with CUDA and custom kernel development
 
-### 🔧 Technologies & Tools
+### Technologies & Tools
 
 ![C](https://img.shields.io/badge/C-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
@@ -45,31 +42,15 @@ I'm Abhishek Anand, also known as Abhis, a passionate **Computer Science Student
 ![Unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white)
 ![Android Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white)
 
-### 📂 Notable Projects
-
-#### 🛠️ [Kernel Drive](https://github.com/acedmicabhishek/KernelDrive)
-A performance management application for Linux, allowing users to control CPU and GPU governors to balance battery life and performance. Written in **C++** with **SDL2** and **OpenGL** support.
-
-#### 💻 Custom Compiler "Kat"
-Developing my own language with a unique syntax and parser structure using **C++20**. Aiming to create a compiler for custom applications, focusing on low-level functionality.
-
-#### 🎮 Game Engine Prototype
-Experimenting with **OpenGL** and **Vulkan** to build a basic game engine from scratch. The goal is to understand the rendering pipeline and real-time 3D graphics.
-
 ### 📈 GitHub Stats
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=acedmicabhishek&show_icons=true&theme=dark&hide_border=true" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=acedmicabhishek&theme=dark&hide_border=true" />
 </p>
-
-
   
-### 📫 Let's Connect
+### Socials
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhishek-anand-9b9402308?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/acedmicabhishek)
 
----
-
-⭐️ **Feel free to explore my repositories and connect with me for collaboration!** I'm always open to learning and sharing knowledge in low-level programming and system design.
