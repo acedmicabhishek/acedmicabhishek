@@ -37,16 +37,18 @@ jobs:
           plugin_languages_details: bytes-size, percentage
           plugin_languages_limit: 4
 
-      - name: Contributors with contributions count
+      - name: 🦑 Achievements
+        if: ${{ success() || failure() }}
         uses: lowlighter/metrics@latest
         with:
-          filename: metrics.plugin.contributors.contributions.svg
+          filename: achievements.svg
           token: ${{ secrets.METRICTOKEN }}
           base: ""
-          template: repository
-          repo: metrics
-          plugin_contributors: yes
-          plugin_contributors_contributions: yes
+          output_action: gist
+          committer_gist: ${{ secrets.METRICTOKEN }}
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          plugin_fortune: yes
 
       - name: Contributors and sponsors
         uses: lowlighter/metrics@latest
