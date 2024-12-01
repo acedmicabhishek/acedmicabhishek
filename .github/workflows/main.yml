@@ -50,16 +50,16 @@ jobs:
       #     plugin_achievements_display: compact
       #     plugin_fortune: yes
 
-      - name: Contributors and sponsors
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.plugin.people.repository.svg
-          token: ${{ secrets.METRICTOKEN }}
-          base: ""
-          template: repository
-          repo: metrics
-          plugin_people: yes
-          plugin_people_types: contributors, stargazers, watchers, sponsors
+      # - name: Contributors and sponsors
+      #   uses: lowlighter/metrics@latest
+      #   with:
+      #     filename: metrics.plugin.people.repository.svg
+      #     token: ${{ secrets.METRICTOKEN }}
+      #     base: ""
+      #     template: repository
+      #     repo: metrics
+      #     plugin_people: yes
+      #     plugin_people_types: contributors, stargazers, watchers, sponsors
 
       - name: Current year calendar
         uses: lowlighter/metrics@latest
