@@ -3,6 +3,7 @@ on:
   schedule: [{cron: "0 0 * * *"}] # Runs daily
   workflow_dispatch:             # Allows manual triggering
   push: {branches: ["master", "main"]}
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
@@ -14,3 +15,11 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.METRICTOKEN }}
+
+      - name: Half-year calendar
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.plugin.isocalendar.svg
+          token: ${{ secrets.METRICTOKEN }}
+          base: ""
+          plugin_isocalendar: yes
