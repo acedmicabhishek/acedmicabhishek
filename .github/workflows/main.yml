@@ -37,18 +37,18 @@ jobs:
           plugin_languages_details: bytes-size, percentage
           plugin_languages_limit: 4
 
-      - name: 🦑 Achievements
-        if: ${{ success() || failure() }}
-        uses: lowlighter/metrics@latest
-        with:
-          filename: achievements.svg
-          token: ${{ secrets.METRICTOKEN }}
-          base: ""
-          output_action: gist
-          committer_gist: ${{ secrets.METRICTOKEN }}
-          plugin_achievements: yes
-          plugin_achievements_display: compact
-          plugin_fortune: yes
+      # - name: 🦑 Achievements
+      #   if: ${{ success() || failure() }}
+      #   uses: lowlighter/metrics@latest
+      #   with:
+      #     filename: achievements.svg
+      #     token: ${{ secrets.METRICTOKEN }}
+      #     base: ""
+      #     output_action: gist
+      #     committer_gist: ${{ secrets.METRICTOKEN }}
+      #     plugin_achievements: yes
+      #     plugin_achievements_display: compact
+      #     plugin_fortune: yes
 
       - name: Contributors and sponsors
         uses: lowlighter/metrics@latest
