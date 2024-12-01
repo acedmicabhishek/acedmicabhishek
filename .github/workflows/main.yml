@@ -18,9 +18,9 @@ jobs:
         with:
           token: ${{ secrets.METRICTOKEN }}
 name: Half-year calendar
-uses: lowlighter/metrics@latest
+- uses: lowlighter/metrics@latest
 with:
   filename: metrics.plugin.isocalendar.svg
-  token: ${{ secrets.METRICS_TOKEN }}
+  token: ${{ secrets.METRICTOKEN }}
   base: ""
   plugin_isocalendar: yes
