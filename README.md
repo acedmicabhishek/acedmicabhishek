@@ -3,7 +3,7 @@
 </p>
 
 ![Metrics](/github-metrics.svg)
-
+![Metrics](/metrics.plugin.languages.details.svg)
 ![Metrics](/metrics.plugin.isocalendar.svg)
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=acedmicabhishek&layout=compact&langs_count=20)
