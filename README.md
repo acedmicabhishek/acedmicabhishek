@@ -14,3 +14,4 @@
 
 <img aling="left" alt="sus" src="https://github.com/cat-milk/Anime-Girls-Holding-Programming-Books/blob/master/Vulkan/Arima_Kana_Vulkan_Programming_Guide.png">
 <img align="right" alt="🦑" src="https://github.com/cat-milk/Anime-Girls-Holding-Programming-Books/blob/master/ASM/iM%40S_Shijo_Takane_holding_Assembly_Language_for_x86_Processors.png">
+<!-- https://user-images.githubusercontent.com/22963968/114021347-e3c48b80-9870-11eb-8bc8-998bf39b4d0d.png --!>
