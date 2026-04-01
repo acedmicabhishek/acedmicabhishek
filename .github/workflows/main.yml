@@ -49,15 +49,15 @@ jobs:
       #     plugin_achievements_display: compact
       #     plugin_fortune: yes
 
-      - name: Contributors and sponsors
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.plugin.people.repository.svg
-          token: ${{ secrets.METRICTOKEN }}
-          template: repository
-          repo: ${{ github.repository_owner }}
-          plugin_people: yes
-          plugin_people_types: contributors, stargazers
+      # - name: Contributors and sponsors
+      #   uses: lowlighter/metrics@latest
+      #   with:
+      #     filename: metrics.plugin.people.repository.svg
+      #     token: ${{ secrets.METRICTOKEN }}
+      #     template: repository
+      #     repo: ${{ github.repository_owner }}
+      #     plugin_people: yes
+      #     plugin_people_types: contributors, stargazers
 
       - name: Current year calendar
         uses: lowlighter/metrics@latest
@@ -68,17 +68,17 @@ jobs:
           plugin_calendar: yes
 
           
-      - name: Compact display
-        uses: lowlighter/metrics@latest
-        with:
-            filename: metrics.plugin.achievements.compact.svg
-            token: ${{ secrets.METRICTOKEN }}
-            base: ""
-            plugin_achievements: yes
-            plugin_achievements_only: >-
-               polyglot, stargazer, sponsor, deployer, member, maintainer, developer, scripter, packager, explorer, infographile, manager
-            plugin_achievements_display: compact
-            plugin_achievements_threshold: X
+      # - name: Compact display
+      #   uses: lowlighter/metrics@latest
+      #   with:
+      #       filename: metrics.plugin.achievements.compact.svg
+      #       token: ${{ secrets.METRICTOKEN }}
+      #       base: ""
+      #       plugin_achievements: yes
+      #       plugin_achievements_only: >-
+      #          polyglot, stargazer, sponsor, deployer, member, maintainer, developer, scripter, packager, explorer, infographile, manager
+      #       plugin_achievements_display: compact
+      #       plugin_achievements_threshold: X
 
 
 
