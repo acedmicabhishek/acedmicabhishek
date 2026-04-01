@@ -133,7 +133,6 @@
 </div>
 ```
 
----
 
 ```aura width=800 height=190
 <div style={{ display: 'flex', width: '100%', height: '100%', gap: 14, fontFamily: 'Inter, sans-serif', position: 'relative', overflow: 'hidden', background: '#06060a', borderRadius: 18, padding: 20, border: '1px solid rgba(110,80,220,0.15)' }}>
@@ -212,9 +211,6 @@
 </div>
 ```
 
----
-
-## Tech Stack
 
 ```aura width=800 height=70
 <div style={{ display: 'flex', gap: 10, padding: '14px 22px', width: '100%', height: '100%', background: '#06060a', borderRadius: 30, alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter, sans-serif', position: 'relative', overflow: 'hidden', border: '1px solid rgba(110,80,220,0.15)' }}>
@@ -280,9 +276,6 @@
 </div>
 ```
 
----
-
-## GitHub Stats
 
 ```aura width=800 height=100
 <div style={{ display: 'flex', width: '100%', height: '100%', gap: 12, fontFamily: 'Inter, sans-serif', position: 'relative', overflow: 'hidden', background: '#06060a', borderRadius: 16, padding: 18, border: '1px solid rgba(110,80,220,0.15)', alignItems: 'center', justifyContent: 'center' }}>
@@ -335,7 +328,6 @@
 </div>
 ```
 
-## Languages
 
 ```aura width=800 height=180
 <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', fontFamily: 'Inter, sans-serif', position: 'relative', overflow: 'hidden', background: '#06060a', borderRadius: 16, padding: 24, border: '1px solid rgba(110,80,220,0.15)' }}>
@@ -378,16 +370,7 @@
   </div>
 </div>
 ```
-
----
-
-## Activity
-
 ![Contribution Calendar](./.github/assets/contribution-calendar.svg "Contribution Calendar")
-
-
-
-## Projects
 
 ```aura width=800 height=185 link="https://github.com/acedmicabhishek"
 <div style={{ display: 'flex', width: '100%', height: '100%', gap: 12, fontFamily: 'Inter, sans-serif', position: 'relative', overflow: 'hidden', background: '#06060a', borderRadius: 16, padding: 18, border: '1px solid rgba(110,80,220,0.15)' }}>
