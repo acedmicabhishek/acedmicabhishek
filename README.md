@@ -3,7 +3,6 @@
 </p>
 
 [<img align="left" width="390" alt="🦑" src="https://github.com/acedmicabhishek/acedmicabhishek/blob/main/github-metrics.svg">](#)
-[<img align="right" width="390" alt="🦑" src="https://github.com/acedmicabhishek/acedmicabhishek/blob/main/metrics.plugin.achievements.compact.svg">](#)
 [<img align="left" width="790" alt="🦑" src="https://github.com/acedmicabhishek/acedmicabhishek/blob/main/metrics.plugin.languages.details.svg">](#)
 [<img align="left" width="390" alt="🦑" src="https://github.com/acedmicabhishek/acedmicabhishek/blob/main/metrics.plugin.isocalendar.svg">](#)
 [<img align="left" width="390" alt="🦑" src="https://github.com/acedmicabhishek/acedmicabhishek/blob/main/metrics.plugin.people.repository.svg">](#)
