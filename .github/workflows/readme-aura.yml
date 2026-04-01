@@ -16,6 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch real contribution calendar
+        env:
+          GITHUB_TOKEN: ${{ secrets.METRICTOKEN }}
+          GITHUB_USER: acedmicabhishek
+        run: node .github/scripts/fetch-contributions.js
+
       - name: Generate README
         uses: collectioneur/readme-aura@main
         with:

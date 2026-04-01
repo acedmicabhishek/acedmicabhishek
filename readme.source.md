@@ -383,75 +383,8 @@
 
 ## Activity
 
-```aura width=800 height=280
-<div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', fontFamily: 'Inter, sans-serif', position: 'relative', overflow: 'hidden', background: '#06060a', borderRadius: 20, padding: 24, border: '1px solid rgba(110,80,220,0.2)' }}>
-  <style>
-    {`
-      @keyframes act-drift { 0%, 100% { transform: translate(0, 0); opacity: 0.5; } 50% { transform: translate(30px, -15px); opacity: 0.85; } }
-      @keyframes act-scan { 0% { transform: translate(-900px, 0); } 100% { transform: translate(900px, 0); } }
-      #act-bg1 { animation: act-drift 10s ease-in-out infinite; }
-      #act-scan1 { animation: act-scan 5s linear infinite; }
-    `}
-  </style>
-  <svg width="800" height="280" style={{ position: 'absolute', top: 0, left: 0 }}>
-    <defs>
-      <radialGradient id="actbg1" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="rgba(80,50,220,0.3)" />
-        <stop offset="100%" stopColor="rgba(80,50,220,0)" />
-      </radialGradient>
-      <linearGradient id="act-scg" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="rgba(120,200,255,0)" />
-        <stop offset="40%" stopColor="rgba(120,200,255,0.08)" />
-        <stop offset="50%" stopColor="rgba(160,120,255,0.25)" />
-        <stop offset="60%" stopColor="rgba(120,200,255,0.08)" />
-        <stop offset="100%" stopColor="rgba(120,200,255,0)" />
-      </linearGradient>
-    </defs>
-    <ellipse id="act-bg1" cx="400" cy="140" rx="300" ry="120" fill="url(#actbg1)" />
-    <rect id="act-scan1" x="0" y="140" width="160" height="1" fill="url(#act-scg)" />
-  </svg>
-  
-  <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, zIndex: 10, marginBottom: 12 }}>
-    <span style={{ fontSize: 10, color: 'rgba(120,200,255,0.8)', textTransform: 'uppercase', letterSpacing: 3, fontWeight: 700 }}>Contribution Matrix</span>
-    <span style={{ fontSize: 11, color: '#4a4a6a' }}>—</span>
-    <span style={{ fontSize: 11, color: '#4a4a6a' }}>{github?.stats?.totalCommits ?? 0} commits</span>
-  </div>
+![Contribution Calendar](./.github/assets/contribution-calendar.svg "Contribution Calendar")
 
-  <svg viewBox="0 0 760 195" style={{ width: '100%', height: 195, zIndex: 10 }}>
-    {[...Array(52)].map((_, week) => (
-      [...Array(7)].map((_, day) => {
-        const cellW = 13;
-        const cellH = 13;
-        const gap = 2;
-        const x = week * (cellW + gap);
-        const y = day * (cellH + gap);
-        const seed = ((github?.stats?.totalCommits ?? 147) * (week * 7 + day + 1) * 31 + week * 13 + day * 7) % 100;
-        const level = seed < 30 ? 0 : seed < 55 ? 1 : seed < 75 ? 2 : seed < 90 ? 3 : 4;
-        const colors = ['rgba(30,30,50,0.6)', 'rgba(45,74,110,0.8)', 'rgba(74,126,200,0.85)', 'rgba(126,231,255,0.9)', 'rgba(184,240,255,0.95)'];
-        const glowColors = ['none', 'rgba(45,74,110,0.3)', 'rgba(74,126,200,0.4)', 'rgba(126,231,255,0.5)', 'rgba(184,240,255,0.6)'];
-        
-        return (
-          <g key={`${week}-${day}`}>
-            <rect x={x} y={y} width={cellW} height={cellH} rx={2} fill={colors[level]} stroke={level > 2 ? glowColors[level] : 'rgba(60,60,100,0.15)'} strokeWidth={level > 2 ? 1 : 0.5} />
-          </g>
-        );
-      })
-    ))}
-  </svg>
-
-  <div style={{ display: 'flex', alignItems: 'center', gap: 6, zIndex: 10, marginTop: 6 }}>
-    <span style={{ fontSize: 9, color: '#4a4a6a', marginRight: 4 }}>Less</span>
-    <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(30,30,50,0.6)' }}></span>
-    <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(45,74,110,0.8)' }}></span>
-    <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(74,126,200,0.85)' }}></span>
-    <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(126,231,255,0.9)' }}></span>
-    <span style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(184,240,255,0.95)' }}></span>
-    <span style={{ fontSize: 9, color: '#4a4a6a', marginLeft: 4 }}>More</span>
-  </div>
-</div>
-```
-
----
 
 
 ## Projects
