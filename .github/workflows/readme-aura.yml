@@ -1,8 +1,7 @@
-name: Generate README
+name: Generate Profile
 on:
   push:
     branches: [main, master]
-    paths: ['readme.source.md']
   schedule:
     - cron: '0 6 * * *'
   workflow_dispatch:
@@ -21,13 +20,15 @@ jobs:
         with:
           node-version: 20
 
-      - name: Fetch real contribution calendar
+      - name: Generate profile SVG
         env:
           GITHUB_TOKEN: ${{ secrets.METRICTOKEN }}
           GITHUB_USER: acedmicabhishek
-        run: node .github/scripts/fetch-contributions.js
+        run: node .github/scripts/generate-profile.js
 
-      - name: Generate README
-        uses: collectioneur/readme-aura@main
-        with:
-          github_token: ${{ secrets.METRICTOKEN }}
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/assets/profile.svg
+          git diff --staged --quiet || git commit -m "chore: update profile SVG" && git push
