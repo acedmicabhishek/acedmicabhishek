@@ -9,9 +9,12 @@ query ($login: String!) {
     repositories(first: 100, ownerAffiliations: OWNER, orderBy: {field: STARGAZERS, direction: DESC}) {
       totalCount
       nodes {
+        name
+        description
         stargazerCount
         forkCount
         primaryLanguage { name color }
+        url
       }
     }
     contributionsCollection {
@@ -62,30 +65,50 @@ function processData(user) {
       langMap[name].count++;
     }
   }
-  const langArr = Object.values(langMap).sort((a, b) => b.count - a.count).slice(0, 8);
+  const langArr = Object.values(langMap).sort((a, b) => b.count - a.count).slice(0, 10);
   const totalLang = langArr.reduce((s, l) => s + l.count, 0);
   const languages = langArr.map(l => ({ ...l, percentage: Math.round((l.count / totalLang) * 100) }));
+
+  // Top 3 projects (by stars)
+  const topProjects = repos
+    .filter(r => r.name && r.description)
+    .sort((a, b) => b.stargazerCount - a.stargazerCount)
+    .slice(0, 3)
+    .map(r => ({
+      name: r.name,
+      desc: r.description,
+      stars: r.stargazerCount,
+      forks: r.forkCount,
+      lang: r.primaryLanguage ? r.primaryLanguage.name : null,
+      langColor: r.primaryLanguage ? r.primaryLanguage.color : '#555',
+      url: r.url,
+    }));
 
   return {
     stats: { totalStars, totalForks, totalRepos, totalCommits },
     languages,
+    topProjects,
     calendar: user.contributionsCollection.contributionCalendar,
   };
 }
 
 function generateSVG(data) {
   const W = 800;
-  const pad = 0;
   // Section heights
-  const heroH = 250, profileH = 180, techH = 65, statsH = 95;
-  const langH = 150, calH = 200, projH = 175;
-  const gap = 6;
-  const totalH = heroH + profileH + techH + statsH + langH + calH + projH + gap * 6;
+  const heroH = 240;
+  const techH = 60;
+  const statsH = 90;
+  const langH = 190;
+  const calH = 195;
+  const projH = 195;
+  const footerH = 30;
+  const gap = 10;
+  const totalH = heroH + techH + statsH + langH + calH + projH + footerH + gap * 5;
   const font = `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif`;
 
   let y = 0;
 
-  // ── Animations ──
+  // Animations
   const style = `
     @keyframes drift-r { 0%, 100% { transform: translate(0,0); opacity: 0.6; } 50% { transform: translate(35px,-18px); opacity: 1; } }
     @keyframes drift-l { 0%, 100% { transform: translate(0,0); opacity: 0.55; } 50% { transform: translate(-30px,16px); opacity: 0.95; } }
@@ -107,7 +130,7 @@ function generateSVG(data) {
     .g-gdot { animation: glow-dot 2.5s ease-in-out infinite; }
   `;
 
-  // ── Gradients ──
+  // Gradients
   const defs = `
     <radialGradient id="g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(120,40,255,0.5)"/><stop offset="100%" stop-color="rgba(120,40,255,0)"/></radialGradient>
     <radialGradient id="g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(0,200,220,0.45)"/><stop offset="100%" stop-color="rgba(0,200,220,0)"/></radialGradient>
@@ -151,25 +174,7 @@ function generateSVG(data) {
   })();
   y += heroH + gap;
 
-  // ═══════════════ PROFILE ═══════════════
-  const profile = (() => {
-    const baseY = y;
-    return `
-    <g>
-      <line x1="28" y1="${baseY}" x2="772" y2="${baseY}" stroke="rgba(110,80,220,0.12)" stroke-width="0.5"/>
-      <ellipse class="g-dr" cx="200" cy="${baseY+90}" rx="200" ry="100" fill="url(#g5)"/>
-      <rect class="g-scan" x="0" y="${baseY+90}" width="160" height="1" fill="url(#scg)" style="animation-delay:2s"/>
-      <text x="28" y="${baseY+22}" font-family="${font}" font-size="9" fill="rgba(120,200,255,0.6)" letter-spacing="3" font-weight="600">IDENTITY VERIFIED</text>
-      <text x="28" y="${baseY+48}" font-family="${font}" font-size="22" font-weight="800" fill="#ffffff">Abhishek Anand</text>
-      <text x="28" y="${baseY+68}" font-family="${font}" font-size="11" fill="#6a6a8a">Systems Engineer — Post-Silicon Validation, SoC Architecture, x86/ARM Internals</text>
-      <text x="28" y="${baseY+100}" font-family="${font}" font-size="10" fill="rgba(120,200,255,0.5)" letter-spacing="2" font-weight="600">EXPERIENCE</text>
-      <text x="28" y="${baseY+120}" font-family="${font}" font-size="13" font-weight="700" fill="#ffffff">Matiks</text>
-      <text x="100" y="${baseY+120}" font-family="${font}" font-size="11" fill="#6a6a8a">— Full Stack Developer (Performance &amp; Stability)</text>
-    </g>`;
-  })();
-  y += profileH + gap;
-
-  // ═══════════════ TECH STACK ═══════════════
+  // ═══════════════ TECH STACK PILLS ═══════════════
   const techStack = (() => {
     const baseY = y;
     const techs = ['C', 'C++', 'x86 ASM', 'Python', 'JavaScript', 'Rust', 'GLSL', 'OpenGL'];
@@ -178,8 +183,8 @@ function generateSVG(data) {
     let px = 90;
     techs.forEach((t, i) => {
       const w = t.length * 8 + 24;
-      pills += `<rect x="${px}" y="${baseY+20}" width="${w}" height="28" rx="14" fill="rgba(8,6,14,0.7)" stroke="rgba(100,80,220,0.25)" stroke-width="1"/>`;
-      pills += `<text x="${px + w/2}" y="${baseY+38}" text-anchor="middle" font-family="${font}" font-size="12" font-weight="700" fill="${colors[i]}">${t}</text>`;
+      pills += `<rect x="${px}" y="${baseY+16}" width="${w}" height="28" rx="14" fill="rgba(8,6,14,0.7)" stroke="rgba(100,80,220,0.25)" stroke-width="1"/>`;
+      pills += `<text x="${px + w/2}" y="${baseY+34}" text-anchor="middle" font-family="${font}" font-size="12" font-weight="700" fill="${colors[i]}">${t}</text>`;
       px += w + 8;
     });
     return `
@@ -191,7 +196,7 @@ function generateSVG(data) {
   y += techH + gap;
 
   // ═══════════════ STATS ═══════════════
-  const stats = (() => {
+  const statsBlock = (() => {
     const baseY = y;
     const s = data.stats;
     const items = [
@@ -205,51 +210,68 @@ function generateSVG(data) {
     const startX = (W - colW * 4) / 2;
     items.forEach((item, i) => {
       const cx = startX + i * colW + colW / 2;
-      cols += `<text x="${cx}" y="${baseY+38}" text-anchor="middle" font-family="${font}" font-size="24" font-weight="800" fill="#ffffff">${item.val}</text>`;
-      cols += `<text x="${cx}" y="${baseY+55}" text-anchor="middle" font-family="${font}" font-size="9" fill="${item.color}" letter-spacing="2" font-weight="600">${item.label}</text>`;
+      cols += `<text x="${cx}" y="${baseY+36}" text-anchor="middle" font-family="${font}" font-size="24" font-weight="800" fill="#ffffff">${item.val}</text>`;
+      cols += `<text x="${cx}" y="${baseY+52}" text-anchor="middle" font-family="${font}" font-size="9" fill="${item.color}" letter-spacing="2" font-weight="600">${item.label}</text>`;
       if (i < 3) {
-        cols += `<line x1="${startX + (i+1) * colW}" y1="${baseY+22}" x2="${startX + (i+1) * colW}" y2="${baseY+62}" stroke="rgba(120,80,220,0.15)" stroke-width="0.5"/>`;
+        cols += `<line x1="${startX + (i+1) * colW}" y1="${baseY+20}" x2="${startX + (i+1) * colW}" y2="${baseY+58}" stroke="rgba(120,80,220,0.15)" stroke-width="0.5"/>`;
       }
     });
     return `
     <g>
       <line x1="28" y1="${baseY}" x2="772" y2="${baseY}" stroke="rgba(110,80,220,0.12)" stroke-width="0.5"/>
-      <ellipse class="g-dl" cx="400" cy="${baseY+45}" rx="280" ry="50" fill="url(#g1)"/>
-      <rect class="g-scan" x="0" y="${baseY+45}" width="160" height="1" fill="url(#scg)" style="animation-delay:1s"/>
+      <ellipse class="g-dl" cx="400" cy="${baseY+40}" rx="280" ry="50" fill="url(#g1)"/>
+      <rect class="g-scan" x="0" y="${baseY+40}" width="160" height="1" fill="url(#scg)" style="animation-delay:1s"/>
       ${cols}
     </g>`;
   })();
   y += statsH + gap;
 
-  // ═══════════════ LANGUAGES ═══════════════
+  // ═══════════════ MOST USED LANGUAGES (aura-component-4 style) ═══════════════
   const langs = (() => {
     const baseY = y;
     const ll = data.languages;
-    // Color bar
-    let bar = '';
-    let bx = 28;
-    const barW = 744;
+    const barW = 750;
+    const barX = 25;
+    const barY = baseY + 40;
+
+    // Background bar
+    let bar = `<rect x="${barX}" y="${barY}" width="${barW}" height="6" rx="3" fill="rgba(255,255,255,0.05)"/>`;
+
+    // Colored segments
+    let bx = barX;
     ll.forEach(l => {
       const w = Math.max(barW * l.percentage / 100, 2);
-      bar += `<rect x="${bx}" y="${baseY+30}" width="${w}" height="6" rx="3" fill="${l.color}" opacity="0.85"/>`;
+      bar += `<rect x="${bx}" y="${barY}" width="${w}" height="6" rx="0" fill="${l.color}" opacity="0.85"/>`;
       bx += w;
     });
-    // Legend
+
+    // Legend: 2 rows of 5 items each, matching aura-4 style with glowing dots
     let legend = '';
-    let lx = 28;
-    ll.forEach(l => {
-      legend += `<circle cx="${lx+5}" cy="${baseY+58}" r="5" fill="${l.color}" opacity="0.8"/>`;
-      legend += `<text x="${lx+14}" y="${baseY+62}" font-family="${font}" font-size="12" font-weight="500" fill="#e0e0f0">${l.name}</text>`;
-      legend += `<text x="${lx+14+l.name.length*7}" y="${baseY+62}" font-family="${font}" font-size="10" fill="#6a6a8a"> ${l.percentage}%</text>`;
-      lx += l.name.length * 7 + 50;
-      if (lx > 700) { lx = 28; }
+    const itemsPerRow = 5;
+    const rowH = 30;
+    const legendY1 = barY + 22;
+    const colWidth = 150;
+    ll.forEach((l, i) => {
+      const row = Math.floor(i / itemsPerRow);
+      const col = i % itemsPerRow;
+      const lx = barX + col * colWidth;
+      const ly = legendY1 + row * rowH;
+
+      // Glow dot
+      legend += `<circle cx="${lx+5}" cy="${ly+5}" r="5" fill="${l.color}" opacity="0.8"/>`;
+      // Language name
+      legend += `<text x="${lx+16}" y="${ly+9}" font-family="${font}" font-size="12" font-weight="500" fill="#e0e0f0">${l.name}</text>`;
+      // Percentage
+      const nameW = l.name.length * 7;
+      legend += `<text x="${lx+16+nameW+4}" y="${ly+9}" font-family="${font}" font-size="10" fill="#6a6a8a">${l.percentage}%</text>`;
     });
+
     return `
     <g>
       <line x1="28" y1="${baseY}" x2="772" y2="${baseY}" stroke="rgba(110,80,220,0.12)" stroke-width="0.5"/>
-      <ellipse class="g-dr" cx="650" cy="${baseY+70}" rx="180" ry="80" fill="url(#g5)"/>
-      <text x="28" y="${baseY+18}" font-family="${font}" font-size="9" fill="rgba(120,200,255,0.6)" letter-spacing="3" font-weight="600">MOST USED LANGUAGES</text>
-      <rect x="28" y="${baseY+30}" width="${barW}" height="6" rx="3" fill="rgba(255,255,255,0.05)"/>
+      <ellipse class="g-dr" cx="650" cy="${baseY+90}" rx="180" ry="100" fill="url(#g5)"/>
+      <ellipse class="g-dl" cx="150" cy="${baseY+100}" rx="160" ry="90" fill="url(#g2)" style="opacity:0.3"/>
+      <text x="${barX}" y="${baseY+22}" font-family="${font}" font-size="9" fill="rgba(120,200,255,0.7)" letter-spacing="3" font-weight="600">MOST USED LANGUAGES</text>
       ${bar}
       ${legend}
     </g>`;
@@ -265,7 +287,7 @@ function generateSVG(data) {
     const cgap = 2;
     const step = cellSize + cgap;
     const gridX = 44;
-    const gridY = baseY + 46;
+    const gridY = baseY + 42;
     const colors = ['rgba(30,30,50,0.6)', 'rgba(45,74,110,0.8)', 'rgba(74,126,200,0.85)', 'rgba(126,231,255,0.9)', 'rgba(184,240,255,0.95)'];
     function getLevel(c) { return c === 0 ? 0 : c <= 2 ? 1 : c <= 5 ? 2 : c <= 9 ? 3 : 4; }
     let cells = '';
@@ -303,7 +325,7 @@ function generateSVG(data) {
       <line x1="28" y1="${baseY}" x2="772" y2="${baseY}" stroke="rgba(110,80,220,0.12)" stroke-width="0.5"/>
       <ellipse class="g-dl" cx="400" cy="${baseY+100}" rx="300" ry="90" fill="url(#g5)"/>
       <rect class="g-scan" x="0" y="${baseY+100}" width="160" height="1" fill="url(#scg)" style="animation-delay:3s"/>
-      <text x="28" y="${baseY+18}" font-family="${font}" font-size="9" fill="rgba(120,200,255,0.6)" letter-spacing="3" font-weight="600">CONTRIBUTION MATRIX</text>
+      <text x="28" y="${baseY+18}" font-family="${font}" font-size="9" fill="rgba(120,200,255,0.7)" letter-spacing="3" font-weight="600">CONTRIBUTION MATRIX</text>
       <text x="220" y="${baseY+18}" font-family="${font}" font-size="10" fill="#4a4a6a">— ${total} contributions in the last year</text>
       ${mLabels}
       ${dLabels}
@@ -313,52 +335,67 @@ function generateSVG(data) {
   })();
   y += calH + gap;
 
-  // ═══════════════ PROJECTS ═══════════════
+  // ═══════════════ TOP PROJECTS (aura-component-5 style) ═══════════════
   const projects = (() => {
     const baseY = y;
-    const projs = [
-      { name: 'BrainDance OS', desc: 'Custom x86 operating system with memory management and multitasking', tags: ['C', 'ASM', 'x86'], color: '#7ee7ff' },
-      { name: 'CAT', desc: 'Compiler Architecture Toolkit — custom backend targeting ARM/RISC-V', tags: ['C++', 'LLVM'], color: '#e8c8ff' },
-      { name: 'Calcium 3D', desc: 'Real-time software renderer with vertex pipeline and rasterization', tags: ['C++', 'GLSL'], color: '#ff88cc' },
-    ];
-    const cardW = 230;
-    const cardH = 140;
+    const projs = data.topProjects;
+    const cardW = 240;
+    const cardH = 150;
     const startX = (W - cardW * 3 - 24) / 2;
+    const cardColors = ['rgba(120,200,255,0.12)', 'rgba(200,120,255,0.12)', 'rgba(255,120,200,0.12)'];
+    const textColors = ['#7ee7ff', '#e8c8ff', '#ff88cc'];
     let cards = '';
+
     projs.forEach((p, i) => {
       const cx = startX + i * (cardW + 12);
-      const cy = baseY + 16;
-      cards += `<rect x="${cx}" y="${cy}" width="${cardW}" height="${cardH}" rx="12" fill="rgba(8,6,14,0.7)" stroke="rgba(${p.color === '#7ee7ff' ? '126,231,255' : p.color === '#e8c8ff' ? '232,200,255' : '255,136,204'},0.2)" stroke-width="0.8"/>`;
-      cards += `<text x="${cx+16}" y="${cy+28}" font-family="${font}" font-size="14" font-weight="800" fill="#ffffff">${p.name}</text>`;
-      // Description (two lines)
-      const words = p.desc.split(' ');
+      const cy = baseY + 20;
+      const borderColor = cardColors[i % 3];
+      const accent = textColors[i % 3];
+
+      // Card background
+      cards += `<rect x="${cx}" y="${cy}" width="${cardW}" height="${cardH}" rx="14" fill="rgba(10,8,18,0.7)" stroke="${borderColor}" stroke-width="1"/>`;
+
+      // Repo name
+      cards += `<text x="${cx+18}" y="${cy+28}" font-family="${font}" font-size="14" font-weight="800" fill="#ffffff">${p.name}</text>`;
+
+      // Description (wrap to 2 lines)
+      const desc = (p.desc || '').substring(0, 80);
+      const words = desc.split(' ');
       let line1 = '', line2 = '';
       for (const w of words) {
-        if (line1.length + w.length < 32) line1 += (line1 ? ' ' : '') + w;
+        if (line1.length + w.length < 30) line1 += (line1 ? ' ' : '') + w;
         else line2 += (line2 ? ' ' : '') + w;
       }
-      cards += `<text x="${cx+16}" y="${cy+50}" font-family="${font}" font-size="10" fill="#6a6a8a">${line1}</text>`;
-      if (line2) cards += `<text x="${cx+16}" y="${cy+64}" font-family="${font}" font-size="10" fill="#6a6a8a">${line2}</text>`;
-      // Tags
-      let tx = cx + 16;
-      p.tags.forEach(t => {
-        const tw = t.length * 7 + 14;
-        cards += `<rect x="${tx}" y="${cy+cardH-36}" width="${tw}" height="22" rx="11" fill="rgba(8,6,14,0.9)" stroke="rgba(100,80,220,0.2)" stroke-width="0.5"/>`;
-        cards += `<text x="${tx+tw/2}" y="${cy+cardH-21}" text-anchor="middle" font-family="${font}" font-size="10" font-weight="600" fill="${p.color}">${t}</text>`;
-        tx += tw + 6;
-      });
+      line2 = line2.substring(0, 35);
+      cards += `<text x="${cx+18}" y="${cy+48}" font-family="${font}" font-size="10" fill="rgba(200,200,230,0.75)">${line1}</text>`;
+      if (line2) cards += `<text x="${cx+18}" y="${cy+62}" font-family="${font}" font-size="10" fill="rgba(200,200,230,0.75)">${line2}</text>`;
+
+      // Stats row: stars + forks
+      const statsY = cy + cardH - 50;
+      cards += `<text x="${cx+18}" y="${statsY}" font-family="${font}" font-size="10" fill="#6a6a8a">★ ${p.stars}  ⑂ ${p.forks}</text>`;
+
+      // Language tag pill
+      if (p.lang) {
+        const tagW = p.lang.length * 7 + 20;
+        cards += `<rect x="${cx+18}" y="${cy+cardH-36}" width="${tagW}" height="22" rx="11" fill="rgba(${accent === '#7ee7ff' ? '126,231,255' : accent === '#e8c8ff' ? '232,200,255' : '255,136,204'},0.08)" stroke="rgba(${accent === '#7ee7ff' ? '126,231,255' : accent === '#e8c8ff' ? '232,200,255' : '255,136,204'},0.15)" stroke-width="0.5"/>`;
+        cards += `<text x="${cx+18+tagW/2}" y="${cy+cardH-21}" text-anchor="middle" font-family="${font}" font-size="10" font-weight="600" fill="${accent}">${p.lang}</text>`;
+      }
     });
+
     return `
     <g>
       <line x1="28" y1="${baseY}" x2="772" y2="${baseY}" stroke="rgba(110,80,220,0.12)" stroke-width="0.5"/>
-      <ellipse class="g-du" cx="400" cy="${baseY+90}" rx="250" ry="80" fill="url(#g3)"/>
+      <ellipse class="g-du" cx="400" cy="${baseY+100}" rx="250" ry="80" fill="url(#g3)"/>
+      <ellipse class="g-p" cx="180" cy="${baseY+90}" rx="170" ry="100" fill="url(#g1)" style="opacity:0.4"/>
+      <ellipse class="g-dl" cx="620" cy="${baseY+110}" rx="150" ry="90" fill="url(#g2)" style="opacity:0.3"/>
+      <text x="28" y="${baseY+12}" font-family="${font}" font-size="9" fill="rgba(120,200,255,0.7)" letter-spacing="3" font-weight="600">TOP PROJECTS</text>
       ${cards}
     </g>`;
   })();
+  y += projH;
 
   // ═══════════════ FOOTER ═══════════════
-  y += projH;
-  const footer = `<text x="400" y="${y-8}" text-anchor="middle" font-family="${font}" font-size="8" fill="rgba(80,80,120,0.4)">github.com/acedmicabhishek</text>`;
+  const footer = `<text x="400" y="${y+20}" text-anchor="middle" font-family="${font}" font-size="8" fill="rgba(80,80,120,0.4)">github.com/acedmicabhishek</text>`;
 
   return `<!-- ACE Profile | Generated ${new Date().toISOString()} -->
 <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${totalH}" viewBox="0 0 ${W} ${totalH}">
@@ -366,9 +403,8 @@ function generateSVG(data) {
 <defs>${defs}</defs>
 <rect width="${W}" height="${totalH}" rx="20" fill="#06060a" stroke="rgba(110,80,220,0.15)" stroke-width="1"/>
 ${hero}
-${profile}
 ${techStack}
-${stats}
+${statsBlock}
 ${langs}
 ${calendar}
 ${projects}
@@ -376,7 +412,7 @@ ${footer}
 </svg>`;
 }
 
-// ── Mock data for local testing ──
+// Mock data for local testing
 function mockData() {
   const weeks = [];
   for (let w = 0; w < 52; w++) {
@@ -390,18 +426,27 @@ function mockData() {
   return {
     stats: { totalStars: 12, totalForks: 5, totalRepos: 24, totalCommits: 847 },
     languages: [
-      { name: 'C', color: '#555555', percentage: 35 },
-      { name: 'C++', color: '#f34b7d', percentage: 28 },
-      { name: 'Python', color: '#3572A5', percentage: 15 },
-      { name: 'JavaScript', color: '#f1e05a', percentage: 10 },
-      { name: 'Assembly', color: '#6E4C13', percentage: 7 },
-      { name: 'Rust', color: '#dea584', percentage: 5 },
+      { name: 'C++', color: '#f34b7d', percentage: 35 },
+      { name: 'C', color: '#555555', percentage: 14 },
+      { name: 'Python', color: '#3572A5', percentage: 11 },
+      { name: 'CSS', color: '#663399', percentage: 11 },
+      { name: 'GLSL', color: '#5686a5', percentage: 5 },
+      { name: 'Shell', color: '#89e051', percentage: 5 },
+      { name: 'Assembly', color: '#6E4C13', percentage: 5 },
+      { name: 'TypeScript', color: '#3178c6', percentage: 3 },
+      { name: 'HTML', color: '#e34c26', percentage: 3 },
+      { name: 'JavaScript', color: '#f1e05a', percentage: 3 },
+    ],
+    topProjects: [
+      { name: 'BrainDance OS', desc: 'Custom x86 operating system with memory management and multitasking', stars: 8, forks: 2, lang: 'C', langColor: '#555555' },
+      { name: 'CAT', desc: 'LLVM-based compiler architecture toolkit for ARM/RISC-V backends', stars: 4, forks: 1, lang: 'C++', langColor: '#f34b7d' },
+      { name: 'Calcium 3D', desc: 'Real-time software renderer with vertex pipeline and rasterization', stars: 3, forks: 0, lang: 'C++', langColor: '#f34b7d' },
     ],
     calendar: { totalContributions: 847, weeks },
   };
 }
 
-// ── Main ──
+// Main
 const username = process.env.GITHUB_USER || 'acedmicabhishek';
 const token = process.env.GITHUB_TOKEN;
 
@@ -413,6 +458,7 @@ const token = process.env.GITHUB_TOKEN;
     data = processData(user);
     console.log(`  Stars: ${data.stats.totalStars}, Forks: ${data.stats.totalForks}, Repos: ${data.stats.totalRepos}, Commits: ${data.stats.totalCommits}`);
     console.log(`  Languages: ${data.languages.map(l => l.name).join(', ')}`);
+    console.log(`  Top Projects: ${data.topProjects.map(p => p.name).join(', ')}`);
     console.log(`  Contributions: ${data.calendar.totalContributions} in ${data.calendar.weeks.length} weeks`);
   } else {
     console.log('No GITHUB_TOKEN — using mock data for preview.');
