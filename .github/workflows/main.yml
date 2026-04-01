@@ -54,11 +54,10 @@ jobs:
         with:
           filename: metrics.plugin.people.repository.svg
           token: ${{ secrets.METRICTOKEN }}
-          base: ""
           template: repository
-          repo: metrics
+          repo: ${{ github.repository_owner }}
           plugin_people: yes
-          plugin_people_types: contributors, stargazers, watchers, sponsors
+          plugin_people_types: contributors, stargazers
 
       - name: Current year calendar
         uses: lowlighter/metrics@latest
