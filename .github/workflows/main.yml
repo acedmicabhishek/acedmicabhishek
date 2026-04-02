@@ -1,94 +1,43 @@
-name: Metrics
+name: Generate Profile
 on:
+  push:
+    branches: [main, master]
   schedule:
-    - cron: "*/1 * * * *" # Runs every minute # Runs daily
-  workflow_dispatch:             # Allows manual triggering
-  push: {branches: ["master", "main"]}
+    - cron: '*/30 * * * *' # Runs every 30 minutes
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  github-metrics:
+  generate:
     runs-on: ubuntu-latest
-    environment: 
-      name: production
-    permissions:
-      contents: write
     steps:
-      - uses: lowlighter/metrics@latest
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.METRICTOKEN }}
+          node-version: 20
 
-      - name: 3D Isometric Calendar
-        uses: lowlighter/metrics@latest
+      - name: Generate individual aura components
+        uses: collectioneur/readme-aura@main
         with:
-          filename: metrics.plugin.isocalendar.svg
-          token: ${{ secrets.METRICTOKEN }}
-          base: ""
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-          plugin_isocalendar_scopes: repository
+          github_token: ${{ secrets.METRICTOKEN }}
 
-      - name: Most used (with details)
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.plugin.languages.details.svg
-          token: ${{ secrets.METRICTOKEN }}
-          base: ""
-          plugin_languages: yes
-          plugin_languages_ignored: gnuplot, html, css
-          plugin_languages_details: bytes-size, percentage
-          plugin_languages_limit: 28
+      - name: Generate unified profile SVG
+        env:
+          GITHUB_TOKEN: ${{ secrets.METRICTOKEN }}
+          GITHUB_USER: acedmicabhishek
+        run: node .github/scripts/generate-profile.js
 
-      - name: 🦑 Achievements
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.plugin.achievements.svg
-          token: ${{ secrets.METRICTOKEN }}
-          base: ""
-          plugin_achievements: yes
-          plugin_achievements_display: compact
-          plugin_achievements_threshold: C
-          plugin_achievements_secrets: yes
+      - name: Set README to single profile SVG
+        run: |
+          printf '<p align="center">\n  <img src="https://komarev.com/ghpvc/?username=acedmicabhishek&label=Profile%%20views&color=0e75b6&style=flat" alt="acedmicabhishek" />\n</p>\n\n![ACE Profile](./.github/assets/profile.svg)\n' > README.md
 
-      # - name: Contributors and sponsors
-      #   uses: lowlighter/metrics@latest
-      #   with:
-      #     filename: metrics.plugin.people.repository.svg
-      #     token: ${{ secrets.METRICTOKEN }}
-      #     template: repository
-      #     repo: ${{ github.repository_owner }}
-      #     plugin_people: yes
-      #     plugin_people_types: contributors, stargazers
-
-      - name: Current year calendar
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.plugin.calendar.svg
-          token: ${{ secrets.METRICTOKEN }}
-          base: ""
-          plugin_calendar: yes
-
-          
-      # - name: Compact display
-      #   uses: lowlighter/metrics@latest
-      #   with:
-      #       filename: metrics.plugin.achievements.compact.svg
-      #       token: ${{ secrets.METRICTOKEN }}
-      #       base: ""
-      #       plugin_achievements: yes
-      #       plugin_achievements_only: >-
-      #          polyglot, stargazer, sponsor, deployer, member, maintainer, developer, scripter, packager, explorer, infographile, manager
-      #       plugin_achievements_display: compact
-      #       plugin_achievements_threshold: X
-
-
-
-
-      
-      # - name: Detailed display
-      #   uses: lowlighter/metrics@latest
-      #   with:
-      #     filename: metrics.plugin.achievements.svg
-      #     token: ${{ secrets.METRICTOKEN }}
-      #     base: ""
-      #     plugin_achievements: yes
-      #     plugin_achievements_only: polyglot, stargazer, sponsor, deployer, member, maintainer, developer, scripter, packager, explorer, infographile, manager
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || (git commit -m "chore: update profile" && git push)

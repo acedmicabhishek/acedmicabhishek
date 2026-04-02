@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, master]
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '*/30 * * * *' # Runs every 30 minutes
   workflow_dispatch:
 
 permissions:
