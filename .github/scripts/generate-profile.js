@@ -6,6 +6,7 @@ const QUERY = `
 query ($login: String!) {
   user(login: $login) {
     name
+    createdAt
     repositories(first: 100, ownerAffiliations: OWNER, orderBy: {field: STARGAZERS, direction: DESC}) {
       totalCount
       nodes {
@@ -33,7 +34,16 @@ query ($login: String!) {
   }
 }`;
 
-async function fetchData(username, token) {
+const YEARLY_QUERY = `
+query ($login: String!, $from: DateTime!, $to: DateTime!) {
+  user(login: $login) {
+    contributionsCollection(from: $from, to: $to) {
+      totalCommitContributions
+    }
+  }
+}`;
+
+async function gql(token, query, variables) {
   const res = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
@@ -41,12 +51,32 @@ async function fetchData(username, token) {
       'Content-Type': 'application/json',
       'User-Agent': 'ace-readme',
     },
-    body: JSON.stringify({ query: QUERY, variables: { login: username } }),
+    body: JSON.stringify({ query, variables }),
   });
   if (!res.ok) throw new Error(`GitHub API ${res.status}: ${await res.text()}`);
   const json = await res.json();
   if (json.errors) throw new Error(json.errors.map(e => e.message).join(', '));
-  return json.data.user;
+  return json.data;
+}
+
+async function fetchData(username, token) {
+  return (await gql(token, QUERY, { login: username })).user;
+}
+
+async function fetchAllTimeCommits(username, token, createdAt) {
+  const startYear = new Date(createdAt).getFullYear();
+  const now = new Date();
+  const endYear = now.getFullYear();
+  let total = 0;
+  for (let yr = startYear; yr <= endYear; yr++) {
+    const from = new Date(`${yr}-01-01T00:00:00Z`).toISOString();
+    const to = yr === endYear ? now.toISOString() : new Date(`${yr+1}-01-01T00:00:00Z`).toISOString();
+    const data = await gql(token, YEARLY_QUERY, { login: username, from, to });
+    const c = data.user.contributionsCollection.totalCommitContributions;
+    console.log(`  ${yr}: ${c} commits`);
+    total += c;
+  }
+  return total;
 }
 
 function processData(user) {
@@ -54,7 +84,7 @@ function processData(user) {
   const totalStars = repos.reduce((s, r) => s + r.stargazerCount, 0);
   const totalForks = repos.reduce((s, r) => s + r.forkCount, 0);
   const totalRepos = user.repositories.totalCount;
-  const totalCommits = user.contributionsCollection.totalCommitContributions;
+  const totalCommits = user._allTimeCommits || user.contributionsCollection.totalCommitContributions;
 
   const langMap = {};
   for (const r of repos) {
@@ -468,6 +498,10 @@ const token = process.env.GITHUB_TOKEN;
     console.log(`Fetching data for @${username}...`);
     try {
       const user = await fetchData(username, token);
+      console.log(`  Account created: ${user.createdAt}`);
+      const allTimeCommits = await fetchAllTimeCommits(username, token, user.createdAt);
+      console.log(`  All-time commits: ${allTimeCommits}`);
+      user._allTimeCommits = allTimeCommits;
       data = processData(user);
     } catch (e) {
       console.error(`Error: ${e.message}`);
