@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, master]
   schedule:
-    - cron: '*/1 * * * *' # Runs every 1 minute
+    - cron: '*/1 * * * *' # Every 5 minutes (GitHub Actions minimum)
   workflow_dispatch:
 
 permissions:
