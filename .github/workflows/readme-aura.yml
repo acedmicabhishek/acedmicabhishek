@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, master]
   schedule:
-    - cron: '*/30 * * * *' # Runs every 30 minutes
+    - cron: '*/1 * * * *' # Runs every 1 minute
   workflow_dispatch:
 
 permissions:
@@ -39,5 +39,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add --force .github/assets/*.svg README.md
           git diff --staged --quiet || (git commit -m "chore: update profile" && git push)
