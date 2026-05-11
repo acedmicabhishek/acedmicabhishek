@@ -189,22 +189,22 @@
   <div style={{ display: 'flex', flexDirection: 'column', flex: 1, background: 'rgba(10,8,18,0.7)', borderRadius: 14, padding: 22, border: '1px solid rgba(100,70,200,0.18)', zIndex: 10, justifyContent: 'center' }}>
     <span style={{ fontSize: 10, color: 'rgba(120,200,255,0.7)', textTransform: 'uppercase', letterSpacing: 3, marginBottom: 10, fontWeight: 600 }}>Profile</span>
     <span style={{ fontSize: 15, fontWeight: 700, color: '#ffffff', marginBottom: 6 }}>Systems Programmer</span>
-    <span style={{ fontSize: 12, color: 'rgba(200,200,230,0.8)', lineHeight: 1.5 }}>Specializing in C, C++ and x86/ARM Assembly. OS internals, compiler construction, memory management, and hardware-near optimization. Linux-based performance engineering, graphics pipelines, and bare-metal development.</span>
+    <span style={{ fontSize: 12, color: 'rgba(200,200,230,0.8)', lineHeight: 1.5 }}>Specializing in C, C++ and x86/ARM Assembly for hardware-near optimization.</span>
   </div>
   <div style={{ display: 'flex', flexDirection: 'column', flex: 1, background: 'rgba(10,8,18,0.7)', borderRadius: 14, padding: 22, border: '1px solid rgba(100,70,200,0.18)', zIndex: 10, justifyContent: 'center' }}>
     <span style={{ fontSize: 10, color: 'rgba(200,120,255,0.7)', textTransform: 'uppercase', letterSpacing: 3, marginBottom: 10, fontWeight: 600 }}>Experience</span>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ width: 8, height: 8, borderRadius: 4, background: 'linear-gradient(135deg, #7ee7ff, #4080ff)', boxShadow: '0 0 6px rgba(120,200,255,0.5)' }}></span>
-        <span style={{ fontSize: 13, color: '#e0e0f0', fontWeight: 500 }}>Matiks - Full Stack Dev</span>
+        <span style={{ fontSize: 13, color: '#e0e0f0', fontWeight: 500 }}>System engineer at Matiks</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ width: 8, height: 8, borderRadius: 4, background: 'linear-gradient(135deg, #e8c8ff, #a060ff)', boxShadow: '0 0 6px rgba(200,120,255,0.5)' }}></span>
-        <span style={{ fontSize: 13, color: '#e0e0f0', fontWeight: 500 }}>250K+ active users impacted</span>
+        <span style={{ fontSize: 13, color: '#e0e0f0', fontWeight: 500 }}>dotlottie performance patch</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ width: 8, height: 8, borderRadius: 4, background: 'linear-gradient(135deg, #ff88cc, #ff4080)', boxShadow: '0 0 6px rgba(255,100,180,0.5)' }}></span>
-        <span style={{ fontSize: 13, color: '#e0e0f0', fontWeight: 500 }}>Skia GPU rendering & perf</span>
+        <span style={{ fontSize: 13, color: '#e0e0f0', fontWeight: 500 }}>JSI native module creation</span>
       </div>
     </div>
   </div>
@@ -446,7 +446,7 @@
   <div style={{ display: 'flex', flexDirection: 'column', flex: 1, background: 'rgba(10,8,18,0.7)', borderRadius: 14, padding: 18, border: '1px solid rgba(255,100,180,0.12)', zIndex: 10, justifyContent: 'center' }}>
     <span style={{ fontSize: 17, fontWeight: 800, color: '#ffffff', marginBottom: 4 }}>Calcium 3D</span>
     <span style={{ fontSize: 11, color: '#ff88cc', marginBottom: 6, fontWeight: 600, letterSpacing: 0.5 }}>Game Engine</span>
-    <span style={{ fontSize: 11, color: 'rgba(200,200,230,0.75)', lineHeight: 1.4, marginBottom: 10 }}>3D renderer with .obj loading, PBR, volumetric clouds, water sim, shader system, Dear ImGui debug tools</span>
+    <span style={{ fontSize: 11, color: 'rgba(200,200,230,0.75)', lineHeight: 1.4, marginBottom: 10 }}>Powerful and lightweight game engine with Forced optimization</span>
     <div style={{ display: 'flex', gap: 5 }}>
       <span style={{ padding: '2px 10px', background: 'rgba(120,200,255,0.08)', color: '#78d4ff', borderRadius: 8, fontSize: 10, fontWeight: 600, border: '1px solid rgba(120,200,255,0.15)' }}>C++</span>
       <span style={{ padding: '2px 10px', background: 'rgba(120,220,255,0.08)', color: '#7ee7ff', borderRadius: 8, fontSize: 10, fontWeight: 600, border: '1px solid rgba(120,220,255,0.15)' }}>OpenGL</span>
