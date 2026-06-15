@@ -1,4 +1,4 @@
-<!-- ACE Profile | Enhanced | Generated 2026-06-15T10:23:36.392Z -->
+<!-- ACE Profile | Enhanced | Generated 2026-06-15T16:06:46.176Z -->
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="1184" viewBox="0 0 800 1184">
 <style>
     @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 900; font-display: swap; src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGkyMZhrib2Bg-4.woff2) format('woff2'); }
@@ -48,7 +48,7 @@
   </defs>
 <rect width="800" height="1184" rx="24" fill="#060610" stroke="rgba(110,80,220,0.2)" stroke-width="1.5"/>
 <rect width="800" height="1184" rx="24" fill="url(#grid)"/>
-<circle class="particle" cx="72" cy="44" r="1.5" fill="#7ee7ff" style="--dur:5.9s; --peak:0.55; animation-delay:11.4s;" /><circle class="particle" cx="730" cy="754" r="0.7" fill="#e8c8ff" style="--dur:5.5s; --peak:0.44; animation-delay:6.8s;" /><circle class="particle" cx="382" cy="480" r="1.3" fill="#ff88cc" style="--dur:6.8s; --peak:0.29; animation-delay:9.6s;" /><circle class="particle" cx="703" cy="137" r="0.9" fill="#ffffff" style="--dur:6.0s; --peak:0.44; animation-delay:11.7s;" /><circle class="particle" cx="544" cy="542" r="1.0" fill="#7ee7ff" style="--dur:7.7s; --peak:0.35; animation-delay:7.4s;" /><circle class="particle" cx="366" cy="636" r="2.0" fill="#e8c8ff" style="--dur:7.5s; --peak:0.41; animation-delay:11.7s;" /><circle class="particle" cx="652" cy="624" r="2.1" fill="#ff88cc" style="--dur:5.2s; --peak:0.40; animation-delay:1.6s;" /><circle class="particle" cx="140" cy="494" r="2.0" fill="#ffffff" style="--dur:8.0s; --peak:0.34; animation-delay:9.9s;" /><circle class="particle" cx="92" cy="1003" r="1.8" fill="#7ee7ff" style="--dur:7.1s; --peak:0.38; animation-delay:6.3s;" /><circle class="particle" cx="605" cy="951" r="1.8" fill="#e8c8ff" style="--dur:8.0s; --peak:0.43; animation-delay:10.2s;" /><circle class="particle" cx="11" cy="580" r="1.7" fill="#ff88cc" style="--dur:8.2s; --peak:0.29; animation-delay:7.5s;" /><circle class="particle" cx="460" cy="908" r="1.4" fill="#ffffff" style="--dur:6.6s; --peak:0.49; animation-delay:4.5s;" /><circle class="particle" cx="632" cy="1022" r="1.0" fill="#7ee7ff" style="--dur:10.9s; --peak:0.48; animation-delay:4.4s;" /><circle class="particle" cx="58" cy="528" r="1.8" fill="#e8c8ff" style="--dur:8.9s; --peak:0.48; animation-delay:2.6s;" /><circle class="particle" cx="611" cy="434" r="0.9" fill="#ff88cc" style="--dur:10.7s; --peak:0.45; animation-delay:1.9s;" /><circle class="particle" cx="583" cy="612" r="0.7" fill="#ffffff" style="--dur:8.7s; --peak:0.42; animation-delay:0.6s;" /><circle class="particle" cx="49" cy="804" r="1.4" fill="#7ee7ff" style="--dur:9.0s; --peak:0.42; animation-delay:4.4s;" /><circle class="particle" cx="437" cy="71" r="0.7" fill="#e8c8ff" style="--dur:7.0s; --peak:0.54; animation-delay:11.5s;" />
+<circle class="particle" cx="771" cy="503" r="1.7" fill="#7ee7ff" style="--dur:10.4s; --peak:0.42; animation-delay:6.0s;" /><circle class="particle" cx="55" cy="443" r="0.4" fill="#e8c8ff" style="--dur:6.1s; --peak:0.28; animation-delay:1.9s;" /><circle class="particle" cx="789" cy="592" r="1.1" fill="#ff88cc" style="--dur:7.1s; --peak:0.33; animation-delay:4.5s;" /><circle class="particle" cx="591" cy="52" r="1.6" fill="#ffffff" style="--dur:5.0s; --peak:0.39; animation-delay:7.8s;" /><circle class="particle" cx="795" cy="1" r="1.6" fill="#7ee7ff" style="--dur:8.0s; --peak:0.47; animation-delay:5.0s;" /><circle class="particle" cx="442" cy="695" r="1.9" fill="#e8c8ff" style="--dur:10.1s; --peak:0.32; animation-delay:9.8s;" /><circle class="particle" cx="59" cy="352" r="1.9" fill="#ff88cc" style="--dur:8.1s; --peak:0.41; animation-delay:2.5s;" /><circle class="particle" cx="474" cy="1075" r="1.3" fill="#ffffff" style="--dur:8.0s; --peak:0.51; animation-delay:3.8s;" /><circle class="particle" cx="737" cy="1149" r="1.9" fill="#7ee7ff" style="--dur:6.7s; --peak:0.28; animation-delay:9.6s;" /><circle class="particle" cx="397" cy="1119" r="1.9" fill="#e8c8ff" style="--dur:10.7s; --peak:0.54; animation-delay:4.6s;" /><circle class="particle" cx="611" cy="576" r="1.0" fill="#ff88cc" style="--dur:7.7s; --peak:0.42; animation-delay:11.8s;" /><circle class="particle" cx="340" cy="356" r="0.8" fill="#ffffff" style="--dur:5.2s; --peak:0.28; animation-delay:10.4s;" /><circle class="particle" cx="235" cy="445" r="0.8" fill="#7ee7ff" style="--dur:6.9s; --peak:0.39; animation-delay:0.4s;" /><circle class="particle" cx="382" cy="963" r="1.6" fill="#e8c8ff" style="--dur:8.2s; --peak:0.28; animation-delay:9.4s;" /><circle class="particle" cx="96" cy="743" r="2.1" fill="#ff88cc" style="--dur:5.6s; --peak:0.53; animation-delay:4.1s;" /><circle class="particle" cx="728" cy="892" r="0.6" fill="#ffffff" style="--dur:10.9s; --peak:0.51; animation-delay:0.7s;" /><circle class="particle" cx="63" cy="90" r="0.7" fill="#7ee7ff" style="--dur:9.3s; --peak:0.41; animation-delay:11.6s;" /><circle class="particle" cx="446" cy="948" r="1.9" fill="#e8c8ff" style="--dur:7.2s; --peak:0.47; animation-delay:9.6s;" />
 
     <g>
       <ellipse class="g-dr" cx="200" cy="140" rx="180" ry="110" fill="url(#g1)"/>
@@ -116,7 +116,7 @@
       <rect class="g-scan" x="-200" y="423" width="200" height="2" fill="url(#scg)" style="animation-delay:1.5s"/>
       
       <g>
-        <text x="145" y="423" text-anchor="middle" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="28" font-weight="900" fill="#ffffff">40</text>
+        <text x="145" y="423" text-anchor="middle" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="28" font-weight="900" fill="#ffffff">41</text>
         <text x="145" y="443" text-anchor="middle" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="9" fill="#ffcc33" letter-spacing="2.5" font-weight="800">STARS</text>
       </g><line x1="230" y1="403" x2="230" y2="450" stroke="rgba(120,80,220,0.2)" stroke-width="0.8" stroke-dasharray="3 3"/>
       <g>
@@ -137,7 +137,7 @@
       <line x1="28" y1="502" x2="772" y2="502" stroke="rgba(110,80,220,0.15)" stroke-width="0.8"/>
       <ellipse class="g-dr" cx="650" cy="602" rx="180" ry="100" fill="url(#g5)"/>
       <text x="40" y="524" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="10" fill="rgba(126,231,255,0.85)" letter-spacing="4" font-weight="800">STACK ANALYTICS</text>
-      <rect x="40" y="544" width="720" height="8" rx="4" fill="rgba(255,255,255,0.06)"/><rect x="40" y="544" width="223.2" height="8" rx="4" fill="#f34b7d" opacity="0.9"/><rect x="263.2" y="544" width="100.8" height="8" rx="4" fill="#555555" opacity="0.9"/><rect x="364" y="544" width="86.4" height="8" rx="4" fill="#3178c6" opacity="0.9"/><rect x="450.4" y="544" width="72" height="8" rx="4" fill="#3572A5" opacity="0.9"/><rect x="522.4" y="544" width="72" height="8" rx="4" fill="#663399" opacity="0.9"/><rect x="594.4" y="544" width="50.4" height="8" rx="4" fill="#89e051" opacity="0.9"/><rect x="644.8" y="544" width="36" height="8" rx="4" fill="#5686a5" opacity="0.9"/><rect x="680.8" y="544" width="36" height="8" rx="4" fill="#3D6117" opacity="0.9"/><rect x="716.8" y="544" width="36" height="8" rx="4" fill="#6E4C13" opacity="0.9"/><rect x="752.8" y="544" width="14.4" height="8" rx="4" fill="#A97BFF" opacity="0.9"/>
+      <rect x="40" y="544" width="720" height="8" rx="4" fill="rgba(255,255,255,0.06)"/><rect x="40" y="544" width="223.2" height="8" rx="4" fill="#f34b7d" opacity="0.9"/><rect x="263.2" y="544" width="100.8" height="8" rx="4" fill="#555555" opacity="0.9"/><rect x="364" y="544" width="86.4" height="8" rx="4" fill="#3178c6" opacity="0.9"/><rect x="450.4" y="544" width="72" height="8" rx="4" fill="#3572A5" opacity="0.9"/><rect x="522.4" y="544" width="72" height="8" rx="4" fill="#663399" opacity="0.9"/><rect x="594.4" y="544" width="50.4" height="8" rx="4" fill="#89e051" opacity="0.9"/><rect x="644.8" y="544" width="36" height="8" rx="4" fill="#3D6117" opacity="0.9"/><rect x="680.8" y="544" width="36" height="8" rx="4" fill="#5686a5" opacity="0.9"/><rect x="716.8" y="544" width="36" height="8" rx="4" fill="#6E4C13" opacity="0.9"/><rect x="752.8" y="544" width="14.4" height="8" rx="4" fill="#A97BFF" opacity="0.9"/>
       
       <g>
         <circle cx="45" cy="576" r="4.5" fill="#f34b7d" opacity="0.9"/>
@@ -170,14 +170,14 @@
         <text x="93.5" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="9.5" fill="rgba(180,180,210,0.6)" font-weight="500">7%</text>
       </g>
       <g>
-        <circle cx="189" cy="606" r="4.5" fill="#5686a5" opacity="0.9"/>
-        <text x="199" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="11" font-weight="700" fill="rgba(240,240,255,0.95)">GLSL</text>
-        <text x="231" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="9.5" fill="rgba(180,180,210,0.6)" font-weight="500">5%</text>
+        <circle cx="189" cy="606" r="4.5" fill="#3D6117" opacity="0.9"/>
+        <text x="199" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="11" font-weight="700" fill="rgba(240,240,255,0.95)">TeX</text>
+        <text x="224.5" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="9.5" fill="rgba(180,180,210,0.6)" font-weight="500">5%</text>
       </g>
       <g>
-        <circle cx="333" cy="606" r="4.5" fill="#3D6117" opacity="0.9"/>
-        <text x="343" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="11" font-weight="700" fill="rgba(240,240,255,0.95)">TeX</text>
-        <text x="368.5" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="9.5" fill="rgba(180,180,210,0.6)" font-weight="500">5%</text>
+        <circle cx="333" cy="606" r="4.5" fill="#5686a5" opacity="0.9"/>
+        <text x="343" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="11" font-weight="700" fill="rgba(240,240,255,0.95)">GLSL</text>
+        <text x="375" y="610" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif" font-size="9.5" fill="rgba(180,180,210,0.6)" font-weight="500">5%</text>
       </g>
       <g>
         <circle cx="477" cy="606" r="4.5" fill="#6E4C13" opacity="0.9"/>
